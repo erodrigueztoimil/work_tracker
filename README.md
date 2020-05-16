@@ -5,8 +5,8 @@ JavaScript app that uses MongoDB and Mongoose to keep track of users workouts.
 ## Usage
 
 - `npm install` install dependencies
-- `node seeders/seed.js` add seeds to your db
-- `npm run watch` start express server
+- `npm run seed` add seeds to your db
+- `npm run server` start express server
 
 ## Deployed App
 

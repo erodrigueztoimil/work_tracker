@@ -15,6 +15,7 @@ mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => console.log("Mongodb connection stablished!"));
 
