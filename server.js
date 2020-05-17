@@ -12,11 +12,16 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+  .connect(
+    process.env.MONGODB_URI ||
+      "mongodb://localhost/workout" ||
+      "mongodb://ernesto:Corona7070@ds123490.mlab.com:23490/heroku_ggznxr2t",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    }
+  )
   .then(() => console.log("Mongodb connection stablished!"));
 
 app.listen(PORT, function () {
