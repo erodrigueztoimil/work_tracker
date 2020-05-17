@@ -8,20 +8,14 @@ module.exports = function (app) {
   });
 
   app.post("/api/workouts", (req, res) => {
-    console.log(req.body);
-
-    // let newWorkout = {
-    //   day: req.body.day,
-    //   exercises: req.body.exercises,
-    // };
-    // db.Workout.create(newWorkout, (err) => console.log(err));
+    db.Workout.create(req.body)
+      .then((data) => res.json(data))
+      .catch((err) => console.log(err));
   });
 
   app.put("/api/workouts/:id", (req, res) => {
-    let id = req.params.id;
-
-    db.Workout.findByIdAndUpdate(id, {
-      $push: { exercises: JSON.parse(req.body) },
+    db.Workout.findByIdAndUpdate(req.params.id, {
+      $push: { exercises: req.body },
     })
       .then((data) => res.json(data))
       .catch(console.error);
@@ -31,5 +25,11 @@ module.exports = function (app) {
     db.Workout.find({}).then((workoutData) => {
       res.json(workoutData);
     });
+  });
+
+  app.delete("/api/deleteWorkout/:id", (req, res) => {
+    db.Workout.findByIdAndDelete(req.params.id)
+      .then((response) => res.json(response))
+      .catch((err) => console.log(err));
   });
 };
